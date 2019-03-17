@@ -1,19 +1,20 @@
 export default class Boat {
-  constructor(gameWidth, gameHeight) {
-    this.gameWidth = gameWidth;
-    this.width = gameWidth * 0.15;
-    this.height = gameHeight * 0.12;
+  constructor(game) {
+    this.image = document.getElementById("boatImage");
+    this.gameWidth = game.gameWidth;
+    this.width = game.gameWidth * 0.15;
+    this.height = game.gameHeight * 0.12;
     this.position = {
-      x: gameWidth / 2 - this.width / 2,
-      y: gameHeight - this.height * 1.1
+      x: game.gameWidth / 2 - this.width / 2,
+      y: game.gameHeight - this.height * 1.1
     };
-    this.maxSpeed = 7;
+    this.maxSpeed = game.gameWidth * 0.007;
     this.speed = 0;
   }
 
-  draw(context, img) {
+  draw(context) {
     context.drawImage(
-      img,
+      this.image,
       this.position.x,
       this.position.y,
       this.width,
@@ -22,9 +23,6 @@ export default class Boat {
   }
 
   update(deltaTime) {
-    if (!deltaTime) {
-      return;
-    }
     this.position.x += this.speed;
     if (this.position.x <= 0) {
       this.position.x = 0;
