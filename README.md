@@ -1,2 +1,0 @@
-# MatificChallengeJS
-Created with CodeSandbox
