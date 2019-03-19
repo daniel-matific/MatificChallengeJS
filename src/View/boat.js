@@ -1,6 +1,10 @@
 export default class Boat {
   constructor(game) {
-    this.image = document.getElementById("boatImage");
+    var image = new Image();
+    image.src = "/src/resources/boatLeft.png";
+    document.body.appendChild(image);
+    this.image = image;
+
     this.gameWidth = game.gameWidth;
     this.width = game.gameWidth * 0.15;
     this.height = game.gameHeight * 0.12;
