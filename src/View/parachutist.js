@@ -10,7 +10,7 @@ export default class Parachutist {
     this.width = game.gameWidth * 0.08;
     this.height = game.gameHeight * 0.115;
     this.position = position;
-    this.speed = game.gameWidth * 0.003;
+    this.speed = game.gameWidth * 0.0025;
   }
 
   draw(context) {

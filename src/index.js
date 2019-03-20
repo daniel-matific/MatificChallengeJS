@@ -5,9 +5,23 @@ let context = canvas.getContext("2d");
 
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
+const MAX_DROP_INTERVAL = 3.5; // In seconds
+const MIN_DROP_INTERVAL = 1; // In seconds
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 game.start();
+
+function randomInteger(low, high) {
+  return Math.random() * (high - low) + low;
+}
+
+(function dropParachutist() {
+  game.createParachutist();
+  setTimeout(
+    dropParachutist,
+    randomInteger(MIN_DROP_INTERVAL, MAX_DROP_INTERVAL) * 1000
+  );
+})();
 
 let lastTime = 0;
 function runClock(timestamp) {

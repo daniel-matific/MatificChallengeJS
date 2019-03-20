@@ -10,9 +10,9 @@ export default class Boat {
     this.height = game.gameHeight * 0.12;
     this.position = {
       x: game.gameWidth / 2 - this.width / 2,
-      y: game.gameHeight - this.height * 1.1
+      y: game.gameHeight - this.height * 1.7
     };
-    this.maxSpeed = game.gameWidth * 0.007;
+    this.maxSpeed = game.gameWidth * 0.006;
     this.speed = 0;
   }
 
