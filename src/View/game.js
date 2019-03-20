@@ -1,4 +1,5 @@
 import Boat from "/src/View/boat";
+import Parachutist from "/src/View/parachutist";
 import InputHandler from "/src/View/inputHandler";
 
 export default class Game {
@@ -9,7 +10,10 @@ export default class Game {
 
   start() {
     this.boat = new Boat(this);
-    this.gameObjects = [this.boat];
+    let parachutists = [];
+    parachutists[0] = new Parachutist(this, { x: 50, y: 50 });
+    parachutists[1] = new Parachutist(this, { x: 90, y: 90 });
+    this.gameObjects = [this.boat, ...parachutists];
     new InputHandler(this.boat);
   }
 
