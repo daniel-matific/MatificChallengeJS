@@ -10,9 +10,7 @@ export default class Game {
   constructor(gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.parachutists = new LinkedList();
-    this.backgroundGameObjects = [];
-    this.foregroundGameObjects = [];
+    this.gameObjects = [];
   }
 
   start() {
@@ -20,21 +18,23 @@ export default class Game {
     this.sea = new Sea(this);
     this.plane = new Plane(this);
     this.boat = new Boat(this);
-    this.backgroundGameObjects = [this.background, this.plane];
-    this.foregroundGameObjects = [this.sea, this.boat];
+    this.parachutists = new LinkedList();
+    this.gameObjects = [
+      this.background,
+      this.plane,
+      this.parachutists,
+      this.sea,
+      this.boat
+    ];
     new InputHandler(this.boat);
   }
 
-  update(deltaTime) {
-    this.backgroundGameObjects.forEach(object => object.update(deltaTime));
-    this.parachutists.updateAllNodes(deltaTime);
-    this.foregroundGameObjects.forEach(object => object.update(deltaTime));
+  update() {
+    this.gameObjects.forEach(object => object.update());
   }
 
   draw(context) {
-    this.backgroundGameObjects.forEach(object => object.draw(context));
-    this.parachutists.drawAllNodes(context);
-    this.foregroundGameObjects.forEach(object => object.draw(context));
+    this.gameObjects.forEach(object => object.draw(context));
   }
 
   createParachutist() {

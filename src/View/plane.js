@@ -12,7 +12,7 @@ export default class Plane {
       x: this.gameWidth + this.width,
       y: this.height - game.gameHeight * 0.1
     };
-    this.speed = game.gameWidth * 0.0025;
+    this.speed = game.gameWidth * 0.002;
   }
 
   draw(context) {
@@ -25,7 +25,7 @@ export default class Plane {
     );
   }
 
-  update(deltaTime) {
+  update() {
     this.position.x -= this.speed;
     if (this.position.x <= -this.width) {
       this.position.x = this.gameWidth + this.width;

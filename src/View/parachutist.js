@@ -11,6 +11,7 @@ export default class Parachutist {
     this.height = game.gameHeight * 0.115;
     this.position = position;
     this.speed = game.gameWidth * 0.0025;
+    this.finished = false;
   }
 
   draw(context) {
@@ -23,10 +24,10 @@ export default class Parachutist {
     );
   }
 
-  update(deltaTime) {
+  update() {
     this.position.y += this.speed;
     if (this.position.y >= this.gameHeight - this.height) {
-      this.position.y = this.gameHeight - this.height;
+      this.finished = true;
     }
     /*else if(intersection with boat) {
 

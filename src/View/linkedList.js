@@ -40,18 +40,24 @@ export default class LinkedList {
     return this.head;
   }
 
-  drawAllNodes(context) {
+  draw(context) {
     let current = this.head;
+    let index = 0;
     while (current !== null) {
-      current.data.draw(context);
-      current = current.next;
+      if (current.data.finished) {
+        current = current.next;
+        this.delete(index);
+      } else {
+        current.data.draw(context);
+        current = current.next;
+      }
     }
   }
 
-  updateAllNodes(deltaTime) {
+  update() {
     let current = this.head;
     while (current !== null) {
-      current.data.update(deltaTime);
+      current.data.update();
       current = current.next;
     }
   }

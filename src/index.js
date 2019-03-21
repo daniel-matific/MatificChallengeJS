@@ -23,12 +23,9 @@ function randomInteger(low, high) {
   );
 })();
 
-let lastTime = 0;
-function runClock(timestamp) {
-  let deltaTime = timestamp - lastTime;
-  lastTime = timestamp;
+function runClock() {
   context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-  game.update(deltaTime);
+  game.update();
   game.draw(context);
   requestAnimationFrame(runClock);
 }
