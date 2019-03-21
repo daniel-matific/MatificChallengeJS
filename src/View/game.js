@@ -42,7 +42,7 @@ export default class Game {
 
   update() {
     if (this.lives === 0) {
-      if (this.gameState != GAMESTATE.GAMEOVER) {
+      if (this.gameState !== GAMESTATE.GAMEOVER) {
         this.dashboard.update();
       }
       this.gameState = GAMESTATE.GAMEOVER;
@@ -53,7 +53,7 @@ export default class Game {
 
   draw(context) {
     this.gameObjects.forEach(object => object.draw(context));
-    if (this.gameState == GAMESTATE.GAMEOVER) {
+    if (this.gameState === GAMESTATE.GAMEOVER) {
       context.fillStyle = "rgba(0, 0, 0, 0.5)";
       context.fillRect(0, 0, this.gameWidth, this.gameHeight);
       context.font = this.gameHeight * 0.05 + "px Comic Sans MS";
@@ -65,16 +65,18 @@ export default class Game {
   }
 
   createParachutist() {
-    if (
-      this.plane.position.x > 0 &&
-      this.plane.position.x < this.gameWidth - this.plane.width
-    ) {
-      this.parachutists.insert(
-        new Parachutist(this, {
-          x: this.plane.position.x,
-          y: this.plane.position.y
-        })
-      );
+    if (this.gameState !== GAMESTATE.GAMEOVER) {
+      if (
+        this.plane.position.x > 0 &&
+        this.plane.position.x < this.gameWidth - this.plane.width
+      ) {
+        this.parachutists.insert(
+          new Parachutist(this, {
+            x: this.plane.position.x,
+            y: this.plane.position.y
+          })
+        );
+      }
     }
   }
 

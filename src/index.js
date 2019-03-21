@@ -12,6 +12,9 @@ const STARTING_SCORE = 0;
 const SCORE_INCREASE_AMOUNT = 10;
 const STARTING_LIVES = 3;
 
+canvas.width = GAME_WIDTH;
+canvas.height = GAME_HEIGHT;
+
 let model = new Model(STARTING_SCORE, STARTING_LIVES);
 let game = new Game(GAME_WIDTH, GAME_HEIGHT, STARTING_SCORE, STARTING_LIVES);
 game.start();
