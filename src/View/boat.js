@@ -1,9 +1,14 @@
 export default class Boat {
   constructor(game) {
-    var image = new Image();
-    image.src = "/src/resources/boatLeft.png";
-    document.body.appendChild(image);
-    this.image = image;
+    var imageLeft = new Image();
+    var imageRight = new Image();
+    imageLeft.src = "/src/resources/boatLeft.png";
+    imageRight.src = "/src/resources/boatRight.png";
+    document.body.appendChild(imageLeft);
+    document.body.appendChild(imageRight);
+    this.imageLeft = imageLeft;
+    this.imageRight = imageRight;
+    this.image = imageLeft;
 
     this.gameWidth = game.gameWidth;
     this.width = game.gameWidth * 0.15;
@@ -36,10 +41,12 @@ export default class Boat {
   }
 
   moveLeft() {
+    this.image = this.imageLeft;
     this.speed = -this.maxSpeed;
   }
 
   moveRight() {
+    this.image = this.imageRight;
     this.speed = this.maxSpeed;
   }
 

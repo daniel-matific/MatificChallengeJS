@@ -22,6 +22,15 @@ export default class LinkedList {
     return this.head;
   }
 
+  getAt(index) {
+    let current = this.head;
+    while (index) {
+      current = current.next;
+      index--;
+    }
+    return current;
+  }
+
   delete(index) {
     if (!this.head) {
       this.head = new Node(null);

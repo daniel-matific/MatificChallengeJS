@@ -12,7 +12,7 @@ export default class Plane {
       x: this.gameWidth + this.width,
       y: this.height - game.gameHeight * 0.1
     };
-    this.speed = game.gameWidth * 0.002;
+    this.speed = game.gameWidth * 0.003;
   }
 
   draw(context) {

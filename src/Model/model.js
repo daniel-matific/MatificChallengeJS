@@ -8,15 +8,15 @@ export default class Model {
     return this.score;
   }
 
-  setScore(score) {
-    this.score = score;
+  increaseScore(increaseAmount) {
+    this.score += increaseAmount;
   }
 
   getLives() {
     return this.lives;
   }
 
-  setLives(lives) {
-    this.lives = lives;
+  reduceLives() {
+    this.lives--;
   }
 }
