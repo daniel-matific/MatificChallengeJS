@@ -1,8 +1,9 @@
 import Node from "/src/View/node";
 
 export default class LinkedList {
-  constructor() {
+  constructor(game) {
     this.head = null;
+    this.game = game;
   }
 
   insert(data) {
@@ -44,12 +45,13 @@ export default class LinkedList {
     let current = this.head;
     let index = 0;
     while (current !== null) {
-      if (current.data.finished) {
+      if (current.data.saved || current.data.finished) {
         current = current.next;
         this.delete(index);
       } else {
         current.data.draw(context);
         current = current.next;
+        index++;
       }
     }
   }

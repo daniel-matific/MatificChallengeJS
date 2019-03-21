@@ -1,26 +1,31 @@
 export default class InputHandler {
-  constructor(boat) {
+  constructor(game) {
+    this.game = game;
     document.addEventListener("keydown", event => {
       switch (event.keyCode) {
         case 37: // Left Key
-          boat.moveLeft();
+          this.game.boat.moveLeft();
           break;
         case 39: // Right Key
-          boat.moveRight();
+          this.game.boat.moveRight();
+          break;
+        default:
           break;
       }
     });
     document.addEventListener("keyup", event => {
       switch (event.keyCode) {
         case 37: // Left Key
-          if (boat.speed < 0) {
-            boat.stop();
+          if (this.game.boat.speed < 0) {
+            this.game.boat.stop();
           }
           break;
         case 39: // Right Key
-          if (boat.speed > 0) {
-            boat.stop();
+          if (this.game.boat.speed > 0) {
+            this.game.boat.stop();
           }
+          break;
+        default:
           break;
       }
     });

@@ -18,7 +18,7 @@ export default class Game {
     this.sea = new Sea(this);
     this.plane = new Plane(this);
     this.boat = new Boat(this);
-    this.parachutists = new LinkedList();
+    this.parachutists = new LinkedList(this);
     this.gameObjects = [
       this.background,
       this.plane,
@@ -26,7 +26,7 @@ export default class Game {
       this.sea,
       this.boat
     ];
-    new InputHandler(this.boat);
+    new InputHandler(this);
   }
 
   update() {
