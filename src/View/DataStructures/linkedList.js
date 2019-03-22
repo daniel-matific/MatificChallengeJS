@@ -1,4 +1,4 @@
-import Node from "/src/View/node";
+import Node from "/src/View/DataStructures/node";
 
 export default class LinkedList {
   constructor(game) {

@@ -1,28 +1,28 @@
-import Boat from "/src/View/boat";
-import Parachutist from "/src/View/parachutist";
+import Boat from "/src/View/GameObjects/boat";
+import Parachutist from "/src/View/GameObjects/parachutist";
 import InputHandler from "/src/View/inputHandler";
-import LinkedList from "/src/View/linkedList";
-import Background from "/src/View/background";
-import Sea from "/src/View/sea";
-import Plane from "/src/View/plane";
-import Dashboard from "/src/View/dashboard";
+import LinkedList from "/src/View/DataStructures/linkedList";
+import Background from "/src/View/GameObjects/background";
+import Sea from "/src/View/GameObjects/sea";
+import Plane from "/src/View/GameObjects/plane";
+import Dashboard from "/src/View/GameObjects/dashboard";
 
-const GAMESTATE = {
+export const GAMESTATE = {
   GAMEOVER: 0,
   RUNNING: 1
 };
 
-export default class Game {
+export default class View {
   constructor(gameWidth, gameHeight, startingScore, startingLives) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
     this.gameObjects = [];
     this.score = startingScore;
     this.lives = startingLives;
+    this.gameState = GAMESTATE.RUNNING;
   }
 
   start() {
-    this.gameState = GAMESTATE.RUNNING;
     this.background = new Background(this);
     this.sea = new Sea(this);
     this.plane = new Plane(this);

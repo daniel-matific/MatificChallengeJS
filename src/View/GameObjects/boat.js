@@ -1,5 +1,7 @@
+import { GAMESTATE } from "/src/View/view";
+
 export default class Boat {
-  constructor(game) {
+  constructor(view) {
     var imageLeft = new Image();
     var imageRight = new Image();
     imageLeft.src = "/src/resources/boatLeft.png";
@@ -9,15 +11,15 @@ export default class Boat {
     this.imageLeft = imageLeft;
     this.imageRight = imageRight;
     this.image = imageLeft;
-
-    this.gameWidth = game.gameWidth;
-    this.width = game.gameWidth * 0.15;
-    this.height = game.gameHeight * 0.12;
+    this.view = view;
+    this.gameWidth = view.gameWidth;
+    this.width = view.gameWidth * 0.15;
+    this.height = view.gameHeight * 0.12;
     this.position = {
-      x: game.gameWidth / 2 - this.width / 2,
-      y: game.gameHeight - this.height * 1.7
+      x: view.gameWidth / 2 - this.width / 2,
+      y: view.gameHeight - this.height * 1.7
     };
-    this.maxSpeed = game.gameWidth * 0.006;
+    this.maxSpeed = view.gameWidth * 0.006;
     this.speed = 0;
   }
 
@@ -41,13 +43,17 @@ export default class Boat {
   }
 
   moveLeft() {
-    this.image = this.imageLeft;
-    this.speed = -this.maxSpeed;
+    if (this.view.gameState !== GAMESTATE.GAMEOVER) {
+      this.image = this.imageLeft;
+      this.speed = -this.maxSpeed;
+    }
   }
 
   moveRight() {
-    this.image = this.imageRight;
-    this.speed = this.maxSpeed;
+    if (this.view.gameState !== GAMESTATE.GAMEOVER) {
+      this.image = this.imageRight;
+      this.speed = this.maxSpeed;
+    }
   }
 
   stop() {
