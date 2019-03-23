@@ -41,7 +41,7 @@ export default class View {
   }
 
   update() {
-    if (this.lives === 0) {
+    if (this.lives <= 0) {
       if (this.gameState !== GAMESTATE.GAMEOVER) {
         this.dashboard.update();
       }

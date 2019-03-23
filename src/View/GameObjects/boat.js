@@ -13,11 +13,11 @@ export default class Boat {
     this.image = imageLeft;
     this.view = view;
     this.gameWidth = view.gameWidth;
-    this.width = view.gameWidth * 0.15;
-    this.height = view.gameHeight * 0.12;
+    this.width = view.gameWidth * 0.12;
+    this.height = this.width * 0.63;
     this.position = {
       x: view.gameWidth / 2 - this.width / 2,
-      y: view.gameHeight - this.height * 1.7
+      y: view.gameHeight * 0.8
     };
     this.maxSpeed = view.gameWidth * 0.006;
     this.speed = 0;

@@ -6,11 +6,11 @@ export default class Plane {
     this.image = image;
 
     this.gameWidth = game.gameWidth;
-    this.width = game.gameWidth * 0.25;
-    this.height = game.gameHeight * 0.15;
+    this.width = game.gameWidth * 0.15;
+    this.height = this.width * 0.78;
     this.position = {
       x: this.gameWidth + this.width,
-      y: this.height - game.gameHeight * 0.1
+      y: game.gameHeight * 0.04
     };
     this.speed = game.gameWidth * 0.003;
   }

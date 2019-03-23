@@ -6,7 +6,7 @@ export default class Background {
     this.image = image;
 
     this.width = game.gameWidth;
-    this.height = game.gameHeight;
+    this.height = this.width * 0.66;
     this.position = {
       x: 0,
       y: 0
