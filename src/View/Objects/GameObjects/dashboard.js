@@ -1,14 +1,14 @@
-export default class Dashboard {
-  constructor(game) {
-    this.game = game;
-    this.score = game.score;
-    this.lives = game.lives;
-    this.gameHeight = game.gameHeight;
-    this.gameWidth = game.gameWidth;
+import GameObject from "/src/View/Objects/gameObject";
+
+export default class Dashboard extends GameObject {
+  constructor(view) {
+    super(view);
     this.position = {
-      x: game.gameWidth * 0.03,
-      y: game.gameHeight * 0.08
+      x: this.gameWidth * 0.03,
+      y: this.gameHeight * 0.08
     };
+    this.score = view.score;
+    this.lives = view.lives;
   }
 
   draw(context) {
@@ -38,7 +38,7 @@ export default class Dashboard {
   }
 
   update() {
-    this.score = this.game.score;
-    this.lives = this.game.lives;
+    this.score = this.view.score;
+    this.lives = this.view.lives;
   }
 }

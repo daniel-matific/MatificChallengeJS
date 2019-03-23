@@ -1,9 +1,8 @@
 import Node from "/src/View/DataStructures/node";
 
 export default class LinkedList {
-  constructor(game) {
+  constructor() {
     this.head = null;
-    this.game = game;
   }
 
   insert(data) {
