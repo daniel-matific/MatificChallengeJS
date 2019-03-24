@@ -21,6 +21,9 @@ export default class View {
     this.gameState = GAMESTATE.RUNNING;
   }
 
+  /**
+   * Functions that creates all the game objects and input handler.
+   */
   start() {
     this.background = new Background(this);
     this.plane = new Plane(this);
@@ -39,6 +42,9 @@ export default class View {
     new InputHandler(this);
   }
 
+  /**
+   * Functions checks if the game is over, otherwise it updates all the game objects.
+   */
   update() {
     if (this.lives <= 0) {
       if (this.gameState !== GAMESTATE.GAMEOVER) {
@@ -50,6 +56,11 @@ export default class View {
     }
   }
 
+  /**
+   * Function draws all game objects on the canvas.
+   * If game is over it draws the "Game Over" screen.
+   * @param {context} context context of the canvas
+   */
   draw(context) {
     this.gameObjects.forEach(GameObject => GameObject.draw(context));
     if (this.gameState === GAMESTATE.GAMEOVER) {
@@ -57,12 +68,17 @@ export default class View {
     }
   }
 
+  /**
+   * Function creates Parachutists in the position of the plane as long as
+   * the game is still running.
+   */
   createParachutist() {
     if (this.gameState !== GAMESTATE.GAMEOVER) {
       if (
         this.plane.position.x > 0 &&
         this.plane.position.x < this.gameWidth - this.plane.width
       ) {
+        // Only create parachutists if the plane is inside the boundaries of the canvas
         this.parachutists.insert(
           new Parachutist(this, {
             x: this.plane.position.x,
@@ -73,14 +89,26 @@ export default class View {
     }
   }
 
+  /**
+   * Updates the score according to a given parameter.
+   * @param {int} score the score to update
+   */
   updateScore(score) {
     this.score = score;
   }
 
+  /**
+   * Updates the lives according to a given parameter.
+   * @param {int} lives the lives to update
+   */
   updateLives(lives) {
     this.lives = lives;
   }
 
+  /**
+   * Function draws the game over screen.
+   * @param {context} context context of the canvas
+   */
   gameOver(context) {
     context.fillStyle = "rgba(0, 0, 0, 0.5)";
     context.fillRect(0, 0, this.gameWidth, this.gameHeight);

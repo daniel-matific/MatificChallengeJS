@@ -14,8 +14,14 @@ export default class Controller {
     this.model = new Model(STARTING_SCORE, STARTING_LIVES);
     this.view = new View(gameWidth, gameHeight, STARTING_SCORE, STARTING_LIVES);
     this.view.start();
+    this.init();
   }
 
+  /**
+   * Add listeners to parachutist drowned or saved events/
+   * Once the events are triggered te controller invokes changes in the model
+   * and updates the view accordingly.
+   */
   addListeners() {
     document.addEventListener("parachutistDrowned", event => {
       this.model.reduceLives();
@@ -28,6 +34,9 @@ export default class Controller {
     });
   }
 
+  /**
+   * Triggers the createParachutist() function of the view in random intervals.
+   */
   dropParachutists() {
     this.view.createParachutist();
     setTimeout(
@@ -36,14 +45,32 @@ export default class Controller {
     );
   }
 
+  /**
+   * Utility function to generate a random number within specified boundaries.
+   * @param {number} low Low boundary(inclusive)
+   * @param {number} high High boundary(exclusive)
+   */
   randomNumber(low, high) {
     return Math.random() * (high - low) + low;
   }
 
+  /**
+   * Function that runs in every available animation frame which clears the screen,
+   * updates all game objects and draws them.
+   * @param {context} context context of the canvas
+   */
   run(context) {
     context.clearRect(0, 0, this.gameWidth, this.gameHeight);
     this.view.update();
     this.view.draw(context);
     requestAnimationFrame(this.run.bind(this, context));
+  }
+
+  /**
+   * Initiates the functions that need to run when the game starts.
+   */
+  init() {
+    this.addListeners();
+    this.dropParachutists();
   }
 }

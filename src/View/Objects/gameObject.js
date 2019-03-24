@@ -12,6 +12,10 @@ export default class GameObject {
     };
   }
 
+  /**
+   * Function draws game object on canvas according to given parameters.
+   * @param {context} context context of the canvas
+   */
   draw(context) {
     context.drawImage(
       this.image,

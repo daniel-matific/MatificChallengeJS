@@ -22,15 +22,23 @@ export default class Boat extends MovingObject {
     this.maxSpeed *= 0.006;
   }
 
+  /**
+   * Function updates the boat's position according to it's speed.
+   */
   update() {
     this.position.x += this.speed;
     if (this.position.x <= 0) {
+      // Checks if boat's position exits the screen from the left
       this.position.x = 0;
     } else if (this.position.x + this.width >= this.gameWidth) {
+      // Checks if boat's position exits the screen from the right
       this.position.x = this.gameWidth - this.width;
     }
   }
 
+  /**
+   * Functions moves the boat to the left as long as game isn't over.
+   */
   moveLeft() {
     if (this.view.gameState !== GAMESTATE.GAMEOVER) {
       this.image = this.imageLeft;
@@ -38,6 +46,9 @@ export default class Boat extends MovingObject {
     }
   }
 
+  /**
+   * Functions moves the boat to the right as long as game isn't over.
+   */
   moveRight() {
     if (this.view.gameState !== GAMESTATE.GAMEOVER) {
       this.image = this.imageRight;
@@ -45,6 +56,9 @@ export default class Boat extends MovingObject {
     }
   }
 
+  /**
+   * Function stops the boat's movement.
+   */
   stop() {
     this.speed = 0;
   }

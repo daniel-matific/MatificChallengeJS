@@ -10,6 +10,4 @@ canvas.width = GAME_WIDTH;
 canvas.height = GAME_HEIGHT;
 
 let controller = new Controller(GAME_WIDTH, GAME_HEIGHT);
-controller.addListeners();
-controller.dropParachutists();
 controller.run(context);

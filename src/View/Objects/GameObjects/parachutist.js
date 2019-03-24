@@ -15,6 +15,9 @@ export default class Parachutist extends MovingObject {
     this.finished = false;
   }
 
+  /**
+   * Function updates the position of the Parachutist and dispatches events according to Parachutist status in game.
+   */
   update() {
     this.position.y += this.speed;
     if (this.position.y >= this.gameHeight - this.height) {

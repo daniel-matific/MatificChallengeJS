@@ -11,6 +11,10 @@ export default class Dashboard extends GameObject {
     this.lives = view.lives;
   }
 
+  /**
+   * Functions draws the dashboard on canvas.
+   * @param {context} context context of the canvas
+   */
   draw(context) {
     context.font = this.gameHeight * 0.05 + "px Comic Sans MS";
     context.textAlign = "center";
@@ -37,6 +41,9 @@ export default class Dashboard extends GameObject {
     );
   }
 
+  /**
+   * Function updates the score and lives.
+   */
   update() {
     this.score = this.view.score;
     this.lives = this.view.lives;

@@ -16,9 +16,13 @@ export default class Plane extends MovingObject {
     this.speed = this.gameWidth * 0.003;
   }
 
+  /**
+   * Function updates the position of the plane.
+   */
   update() {
     this.position.x -= this.speed;
     if (this.position.x <= -this.width) {
+      // If plane left the screen to the left, return it to the right
       this.position.x = this.gameWidth + this.width;
     }
   }
