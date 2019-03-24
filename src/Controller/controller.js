@@ -28,31 +28,22 @@ export default class Controller {
     });
   }
 
-  triggerParachutists() {
-    let view = this.view;
-    (function dropParachutist() {
-      view.createParachutist();
-      setTimeout(
-        dropParachutist,
-        randomNumber(MIN_DROP_INTERVAL, MAX_DROP_INTERVAL) * 1000
-      );
-    })();
+  dropParachutists() {
+    this.view.createParachutist();
+    setTimeout(
+      this.dropParachutists.bind(this),
+      this.randomNumber(MIN_DROP_INTERVAL, MAX_DROP_INTERVAL) * 1000
+    );
+  }
+
+  randomNumber(low, high) {
+    return Math.random() * (high - low) + low;
   }
 
   run(context) {
-    let view = this.view;
-    let gameWidth = this.gameWidth;
-    let gameHeight = this.gameHeight;
-    function runClock() {
-      context.clearRect(0, 0, gameWidth, gameHeight);
-      view.update();
-      view.draw(context);
-      requestAnimationFrame(runClock);
-    }
-    requestAnimationFrame(runClock);
+    context.clearRect(0, 0, this.gameWidth, this.gameHeight);
+    this.view.update();
+    this.view.draw(context);
+    requestAnimationFrame(this.run.bind(this, context));
   }
-}
-
-function randomNumber(low, high) {
-  return Math.random() * (high - low) + low;
 }
