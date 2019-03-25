@@ -69,6 +69,15 @@ export default class View {
   }
 
   /**
+   * Function dispatches a new event with the given name.
+   * @param {String} eventName the given event name
+   */
+  sendEvent(eventName) {
+    let event = new Event(eventName);
+    document.dispatchEvent(event);
+  }
+
+  /**
    * Function creates Parachutists in the position of the plane as long as
    * the game is still running.
    */

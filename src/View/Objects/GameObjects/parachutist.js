@@ -23,8 +23,7 @@ export default class Parachutist extends MovingObject {
     if (this.position.y >= this.gameHeight - this.height) {
       // Parachutist touching bottom of screen
       this.finished = true;
-      let event = new Event("parachutistDrowned");
-      document.dispatchEvent(event);
+      this.view.sendEvent("parachutistDrowned");
     } else if (
       this.position.y + this.height >= this.view.boat.position.y &&
       this.position.y <= this.view.boat.position.y &&
@@ -33,8 +32,7 @@ export default class Parachutist extends MovingObject {
     ) {
       // Parachutist touching the boat at parts which are logical
       this.saved = true;
-      let event = new Event("parachutistSaved");
-      document.dispatchEvent(event);
+      this.view.sendEvent("parachutistSaved");
     }
   }
 }
