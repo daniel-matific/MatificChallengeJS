@@ -63,14 +63,14 @@ export default class LinkedList {
 
   /**
    * Function activates the draw function of each node of the linked list.
-   * If any node(Parachutist) was saved/drowned(finished) then it deletes the node.
+   * If any node(Parachutist) was touchedBoat/touchedBottomOfScreen then it deletes the node.
    * @param {context} context context of the canvas
    */
   draw(context) {
     let current = this.head;
     let index = 0;
     while (current !== null) {
-      if (current.data.saved || current.data.finished) {
+      if (current.data.touchedBoat || current.data.touchedBottomOfScreen) {
         current = current.next;
         this.delete(index);
       } else {

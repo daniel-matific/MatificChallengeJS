@@ -40,20 +40,16 @@ export default class Boat extends MovingObject {
    * Functions moves the boat to the left as long as game isn't over.
    */
   moveLeft() {
-    if (this.view.gameState !== GAMESTATE.GAMEOVER) {
-      this.image = this.imageLeft;
-      this.speed = -this.maxSpeed;
-    }
+    this.image = this.imageLeft;
+    this.speed = -this.maxSpeed;
   }
 
   /**
    * Functions moves the boat to the right as long as game isn't over.
    */
   moveRight() {
-    if (this.view.gameState !== GAMESTATE.GAMEOVER) {
-      this.image = this.imageRight;
-      this.speed = this.maxSpeed;
-    }
+    this.image = this.imageRight;
+    this.speed = this.maxSpeed;
   }
 
   /**
