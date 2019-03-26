@@ -39,7 +39,7 @@ export default class Controller {
   }
 
   /**
-   * Add listeners to parachutist drowned or saved events/
+   * Add listeners to parachutist drowned or saved events.
    * Once the events are triggered te controller invokes changes in the model
    * and updates the view accordingly.
    */
@@ -69,8 +69,8 @@ export default class Controller {
   }
 
   /**
-   * Function that runs in every available animation frame which clears the screen,
-   * updates all game objects and draws them.
+   * Function that runs in every available animation frame which updates all game objects and draws them.
+   * If game is over it calls the view to draw the "Game Over" screen.
    */
   run() {
     if (this.view.lives <= 0) {

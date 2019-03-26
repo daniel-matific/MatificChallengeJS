@@ -1,4 +1,3 @@
-import { GAMESTATE } from "/src/View/view";
 import MovingObject from "/src/View/Objects/movingObject";
 
 export default class Boat extends MovingObject {

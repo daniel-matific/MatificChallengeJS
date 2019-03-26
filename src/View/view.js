@@ -43,8 +43,7 @@ export default class View {
   }
 
   /**
-   * Function draws all game objects on the canvas.
-   * If game is over it draws the "Game Over" screen.
+   * Function clears the canvas and then draws all game objects on it.
    */
   draw() {
     this.context.clearRect(0, 0, this.gameWidth, this.gameHeight);
