@@ -1,5 +1,6 @@
 import View from "/src/View/view";
 import Model from "/src/Model/model";
+import { GAMESTATE } from "/src/Model/model";
 import InputHandler from "/src/Controller/inputHandler";
 
 const MAX_DROP_INTERVAL = 2.2; // In seconds
@@ -8,10 +9,6 @@ const STARTING_SCORE = 0;
 const SCORE_INCREASE_AMOUNT = 10;
 const STARTING_LIVES = 3;
 const MILLISECONDS_IN_SECOND = 1000;
-export const GAMESTATE = {
-  GAMEOVER: 0,
-  RUNNING: 1
-};
 
 export default class Controller {
   constructor(canvas, gameWidth, gameHeight) {
@@ -25,7 +22,6 @@ export default class Controller {
       STARTING_SCORE,
       STARTING_LIVES
     );
-    this.gameState = GAMESTATE.RUNNING;
     this.view.start();
     this.init();
   }
@@ -47,12 +43,12 @@ export default class Controller {
     new InputHandler(this.view);
     document.addEventListener("parachutistDrowned", event => {
       this.model.reduceLives();
-      this.view.updateLives(this.model.getLives());
+      this.view.updateLives(this.model.lives);
     });
 
     document.addEventListener("parachutistSaved", event => {
       this.model.increaseScore(SCORE_INCREASE_AMOUNT);
-      this.view.updateScore(this.model.getScore());
+      this.view.updateScore(this.model.score);
     });
   }
 
@@ -74,10 +70,10 @@ export default class Controller {
    */
   run() {
     if (this.view.lives <= 0) {
-      if (this.gameState !== GAMESTATE.GAMEOVER) {
+      if (this.model.gameState !== GAMESTATE.GAMEOVER) {
         this.view.dashboard.update();
       }
-      this.gameState = GAMESTATE.GAMEOVER;
+      this.model.gameState = GAMESTATE.GAMEOVER;
       this.view.gameOver();
     } else {
       this.view.update();

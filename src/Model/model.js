@@ -1,14 +1,13 @@
+export const GAMESTATE = {
+  GAMEOVER: 0,
+  RUNNING: 1
+};
+
 export default class Model {
   constructor(score, lives) {
     this.score = score;
     this.lives = lives;
-  }
-
-  /**
-   * Getter of the score.
-   */
-  getScore() {
-    return this.score;
+    this.gameState = GAMESTATE.RUNNING;
   }
 
   /**
@@ -17,13 +16,6 @@ export default class Model {
    */
   increaseScore(increaseAmount) {
     this.score += increaseAmount;
-  }
-
-  /**
-   * Getter of the lives.
-   */
-  getLives() {
-    return this.lives;
   }
 
   /**
