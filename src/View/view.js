@@ -16,30 +16,26 @@ export default class View {
   }
 
   /**
-   * Functions that creates all the game objects and input handler.
+   * Functions that creates all the game objects.
    */
   start() {
     this.background = new Background(this);
     this.plane = new Plane(this);
-    this.parachutists = new LinkedList();
     this.sea = new Sea(this);
     this.dashboard = new Dashboard(this);
     this.boat = new Boat(this);
-    this.gameObjects = [
-      this.background,
-      this.plane,
-      this.parachutists,
-      this.sea,
-      this.dashboard,
-      this.boat
-    ];
+    this.backgroundGameObjects = [this.background, this.plane];
+    this.parachutists = new LinkedList();
+    this.foregroundGameObjects = [this.sea, this.dashboard, this.boat];
   }
 
   /**
-   * Functions checks if the game is over, otherwise it updates all the game objects.
+   * Functions updates all the game objects.
    */
   update() {
-    this.gameObjects.forEach(GameObject => GameObject.update());
+    this.backgroundGameObjects.forEach(GameObject => GameObject.update());
+    this.updateParachutists();
+    this.foregroundGameObjects.forEach(GameObject => GameObject.update());
   }
 
   /**
@@ -47,12 +43,17 @@ export default class View {
    */
   draw() {
     this.context.clearRect(0, 0, this.gameWidth, this.gameHeight);
-    this.gameObjects.forEach(GameObject => GameObject.draw(this.context));
+    this.backgroundGameObjects.forEach(GameObject =>
+      GameObject.draw(this.context)
+    );
+    this.drawParachutists();
+    this.foregroundGameObjects.forEach(GameObject =>
+      GameObject.draw(this.context)
+    );
   }
 
   /**
-   * Function creates Parachutists in the position of the plane as long as
-   * the game is still running.
+   * Function creates Parachutists in the position of the plane.
    */
   createParachutist() {
     if (this.planeInBoundaries()) {
@@ -77,6 +78,36 @@ export default class View {
   }
 
   /**
+   * Function activates the draw function of each node's data object(Patachutist) of the linked list.
+   * If any node's data object(Parachutist) has touchedBoat/touchedBottomOfScreen set to true then it deletes the node.
+   */
+  drawParachutists() {
+    let current = this.parachutists.head;
+    let index = 0;
+    while (current !== null) {
+      if (current.data.touchedBoat || current.data.touchedBottomOfScreen) {
+        current = current.next;
+        this.parachutists.delete(index);
+      } else {
+        current.data.draw(this.context);
+        current = current.next;
+        index++;
+      }
+    }
+  }
+
+  /**
+   * Function activates the update function of each node's data object(Patachutist) of the linked list.
+   */
+  updateParachutists() {
+    let current = this.parachutists.head;
+    while (current !== null) {
+      current.data.update();
+      current = current.next;
+    }
+  }
+
+  /**
    * Updates the score according to a given parameter.
    * @param {int} score the score to update
    */
@@ -93,7 +124,7 @@ export default class View {
   }
 
   /**
-   * Function draws the game over screen.
+   * Function draws the "Game Over" screen.
    */
   gameOver() {
     this.context.fillStyle = "rgba(0, 0, 0, 0.5)";
