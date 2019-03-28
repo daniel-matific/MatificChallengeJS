@@ -1,16 +1,17 @@
 import MovingObject from "/src/View/Objects/movingObject";
+import { VIEW_CFG } from "/src/View/viewCfgEnum";
 
 export default class Parachutist extends MovingObject {
   constructor(view, position) {
     super(view);
     var image = new Image();
-    image.src = "/src/resources/parachutist.png";
+    image.src = VIEW_CFG.PARACHUTIST_IMAGE;
     document.body.appendChild(image);
     this.image = image;
-    this.width *= 0.05;
-    this.height = this.width * 1.47;
+    this.width *= VIEW_CFG.PARACHUTIST_WIDTH_RATIO;
+    this.height = this.width * VIEW_CFG.PARACHUTIST_HEIGHT_RATIO;
     this.position = position;
-    this.speed = this.gameWidth * 0.0025;
+    this.speed = this.gameWidth * VIEW_CFG.PARACHUTIST_SPEED;
     this.touchedBoat = false;
     this.touchedBottomOfScreen = false;
   }
@@ -23,11 +24,11 @@ export default class Parachutist extends MovingObject {
     if (this.position.y >= this.gameHeight - this.height) {
       // Parachutist touching bottom of screen
       this.touchedBottomOfScreen = true;
-      this.view.sendEvent("parachutistDrowned");
+      this.view.sendEvent(VIEW_CFG.PARACHUTIST_EVENT_DROWNED);
     } else if (this.parachutistTouchingBoat()) {
       // Parachutist touching the boat at parts which are logical
       this.touchedBoat = true;
-      this.view.sendEvent("parachutistSaved");
+      this.view.sendEvent(VIEW_CFG.PARACHUTIST_EVENT_SAVED);
     }
   }
 

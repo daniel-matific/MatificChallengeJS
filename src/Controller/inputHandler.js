@@ -1,7 +1,4 @@
-const KEYS = {
-  LEFT_ARROW: 37,
-  RIGHT_ARROW: 39
-};
+import { CONTROLLER_CFG } from "/src/Controller/controllerCfgEnum";
 
 /**
  * Handling input events via listeners to key strokes.
@@ -11,10 +8,10 @@ export default class InputHandler {
     this.view = view;
     document.addEventListener("keydown", event => {
       switch (event.keyCode) {
-        case KEYS.LEFT_ARROW:
+        case CONTROLLER_CFG.LEFT_ARROW_KEY:
           this.view.boat.moveLeft();
           break;
-        case KEYS.RIGHT_ARROW:
+        case CONTROLLER_CFG.RIGHT_ARROW_KEY:
           this.view.boat.moveRight();
           break;
         default:
@@ -23,12 +20,12 @@ export default class InputHandler {
     });
     document.addEventListener("keyup", event => {
       switch (event.keyCode) {
-        case KEYS.LEFT_ARROW:
+        case CONTROLLER_CFG.LEFT_ARROW_KEY:
           if (this.view.boat.speed < 0) {
             this.view.boat.stop();
           }
           break;
-        case KEYS.RIGHT_ARROW:
+        case CONTROLLER_CFG.RIGHT_ARROW_KEY:
           if (this.view.boat.speed > 0) {
             this.view.boat.stop();
           }

@@ -2,25 +2,22 @@ import View from "/src/View/view";
 import Model from "/src/Model/model";
 import { GAMESTATE } from "/src/Model/model";
 import InputHandler from "/src/Controller/inputHandler";
-
-const MAX_DROP_INTERVAL = 2.2; // In seconds
-const MIN_DROP_INTERVAL = 0.5; // In seconds
-const STARTING_SCORE = 0;
-const SCORE_INCREASE_AMOUNT = 10;
-const STARTING_LIVES = 3;
-const MILLISECONDS_IN_SECOND = 1000;
+import { CONTROLLER_CFG } from "/src/Controller/controllerCfgEnum";
 
 export default class Controller {
   constructor(canvas, gameWidth, gameHeight) {
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.model = new Model(STARTING_SCORE, STARTING_LIVES);
+    this.model = new Model(
+      CONTROLLER_CFG.STARTING_SCORE,
+      CONTROLLER_CFG.STARTING_LIVES
+    );
     this.view = new View(
       canvas,
       this.gameWidth,
       this.gameHeight,
-      STARTING_SCORE,
-      STARTING_LIVES
+      CONTROLLER_CFG.STARTING_SCORE,
+      CONTROLLER_CFG.STARTING_LIVES
     );
     this.view.start();
     this.init();
@@ -41,13 +38,16 @@ export default class Controller {
    */
   addListeners() {
     new InputHandler(this.view);
-    document.addEventListener("parachutistDrowned", event => {
-      this.model.reduceLives();
-      this.view.updateLives(this.model.lives);
-    });
+    document.addEventListener(
+      CONTROLLER_CFG.PARACHUTIST_EVENT_DROWNED,
+      event => {
+        this.model.reduceLives();
+        this.view.updateLives(this.model.lives);
+      }
+    );
 
-    document.addEventListener("parachutistSaved", event => {
-      this.model.increaseScore(SCORE_INCREASE_AMOUNT);
+    document.addEventListener(CONTROLLER_CFG.PARACHUTIST_EVENT_SAVED, event => {
+      this.model.increaseScore(CONTROLLER_CFG.SCORE_INCREASE_AMOUNT);
       this.view.updateScore(this.model.score);
     });
   }
@@ -59,8 +59,10 @@ export default class Controller {
     this.view.createParachutist();
     setTimeout(
       this.dropParachutists.bind(this),
-      this.randomNumber(MIN_DROP_INTERVAL, MAX_DROP_INTERVAL) *
-        MILLISECONDS_IN_SECOND
+      this.randomNumber(
+        CONTROLLER_CFG.MIN_DROP_INTERVAL,
+        CONTROLLER_CFG.MAX_DROP_INTERVAL
+      ) * CONTROLLER_CFG.MILLISECONDS_IN_SECOND
     );
   }
 

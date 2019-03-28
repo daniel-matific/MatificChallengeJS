@@ -5,6 +5,7 @@ import Background from "/src/View/Objects/GameObjects/background";
 import Sea from "/src/View/Objects/GameObjects/sea";
 import Plane from "/src/View/Objects/GameObjects/plane";
 import Dashboard from "/src/View/Objects/GameObjects/dashboard";
+import { VIEW_CFG } from "/src/View/viewCfgEnum";
 
 export default class View {
   constructor(canvas, gameWidth, gameHeight, startingScore, startingLives) {
@@ -129,7 +130,8 @@ export default class View {
   gameOver() {
     this.context.fillStyle = "rgba(0, 0, 0, 0.5)";
     this.context.fillRect(0, 0, this.gameWidth, this.gameHeight);
-    this.context.font = this.gameHeight * 0.05 + "px Comic Sans MS";
+    this.context.font =
+      this.gameHeight * VIEW_CFG.FONT_RATIO + "px Comic Sans MS";
     this.context.textAlign = "center";
     this.context.fillStyle = "white";
     this.context.fillText("GAME OVER", this.gameWidth / 2, this.gameHeight / 2);
