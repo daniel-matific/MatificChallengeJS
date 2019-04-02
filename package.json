@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "cp -R ./src/resources ./dist && parcel build index.html"
+    "build": "xcopy .\\src\\resources .\\dist && parcel build index.html"
   },
   "dependencies": {},
   "devDependencies": {
