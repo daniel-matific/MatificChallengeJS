@@ -1,4 +1,4 @@
-import Controller from "/src/Controller/controller";
+import Controller from "./Controller/controller";
 
 let canvas = document.getElementById("gameScreen");
 
