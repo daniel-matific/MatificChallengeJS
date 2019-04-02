@@ -19,7 +19,7 @@ export default class View {
   /**
    * Functions that creates all the game objects.
    */
-  start() {
+  createGameObjects() {
     this.background = new Background(this);
     this.plane = new Plane(this);
     this.sea = new Sea(this);

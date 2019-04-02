@@ -19,7 +19,6 @@ export default class Controller {
       CONTROLLER_CFG.STARTING_SCORE,
       CONTROLLER_CFG.STARTING_LIVES
     );
-    this.view.start();
     this.init();
   }
 
@@ -27,6 +26,7 @@ export default class Controller {
    * Initiates the functions that need to run when the game starts.
    */
   init() {
+    this.view.createGameObjects();
     this.addListeners();
     this.dropParachutists();
   }
