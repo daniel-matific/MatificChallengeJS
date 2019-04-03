@@ -25,7 +25,7 @@ export default class Parachutist extends MovingObject {
       // Parachutist touching bottom of screen
       this.touchedBottomOfScreen = true;
       this.view.sendEvent(VIEW_CFG.PARACHUTIST_EVENT_DROWNED);
-    } else if (this.parachutistTouchingBoat()) {
+    } else if (this.isParachutistTouchingBoat()) {
       // Parachutist touching the boat at parts which are logical
       this.touchedBoat = true;
       this.view.sendEvent(VIEW_CFG.PARACHUTIST_EVENT_SAVED);
@@ -35,7 +35,7 @@ export default class Parachutist extends MovingObject {
   /**
    * Function returns if the parachutist game object is touching the boat game object in logical places for a catch.
    */
-  parachutistTouchingBoat() {
+  isParachutistTouchingBoat() {
     return (
       this.position.y + this.height >= this.view.boat.position.y &&
       this.position.y <= this.view.boat.position.y &&

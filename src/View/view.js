@@ -57,7 +57,7 @@ export default class View {
    * Function creates Parachutists in the position of the plane.
    */
   createParachutist() {
-    if (this.planeInBoundaries()) {
+    if (this.isPlaneInBoundaries()) {
       // Only create parachutists if the plane is inside the boundaries of the canvas
       this.parachutists.insert(
         new Parachutist(this, {
@@ -71,7 +71,7 @@ export default class View {
   /**
    * Function returns if the plane game object is entirely in the boundaries of the canvas.
    */
-  planeInBoundaries() {
+  isPlaneInBoundaries() {
     return (
       this.plane.position.x > 0 &&
       this.plane.position.x < this.gameWidth - this.plane.width
@@ -79,7 +79,7 @@ export default class View {
   }
 
   /**
-   * Function activates the draw function of each node's data object(Patachutist) of the linked list.
+   * Function activates the draw function of each node's data object(Parachutist) of the linked list.
    * If any node's data object(Parachutist) has touchedBoat/touchedBottomOfScreen set to true then it deletes the node.
    */
   drawParachutists() {
@@ -98,7 +98,7 @@ export default class View {
   }
 
   /**
-   * Function activates the update function of each node's data object(Patachutist) of the linked list.
+   * Function activates the update function of each node's data object(Parachutist) of the linked list.
    */
   updateParachutists() {
     let current = this.parachutists.head;
